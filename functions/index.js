@@ -14,6 +14,6 @@ exports.beforeCreate = functions
 
       if (!whitelist.includes(user.email)) {
         throw new Error( "Unauthorized email '{{user.email}}'. " +
-            "Contact administrators and request to join whitelist");
+            "Contact administrators and request whitelist membership.");
       }
     });
