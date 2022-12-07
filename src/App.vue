@@ -1,30 +1,46 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <TheNavigation />
+  <div class="container">
+    <router-view v-if="hasLoadedData" />
+    <p v-else>Loading...</p>
+  </div>
 </template>
 
+<script>
+import TheNavigation from "@/components/TheNavigation.vue";
+import { initialise } from "./firebase";
+
+export default {
+  components: { TheNavigation },
+
+  data() {
+    return { hasLoadedData: false };
+  },
+  created() {
+    initialise("darren");
+    this.hasLoadedData = true;
+  },
+  methods: {},
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-nav {
-  padding: 30px;
+body {
+  font-family: "Poppins", sans-serif;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.container {
+  max-width: 1080px;
+  margin: 15px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid steelblue;
+  padding: 20px;
+  border-radius: 5px;
 }
 </style>
