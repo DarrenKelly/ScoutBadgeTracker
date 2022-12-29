@@ -11,7 +11,8 @@ exports.beforeCreate = functions
     .beforeCreate((user, context) => {
       const whitelist = ["darrenpiersekelly@gmail.com",
         "sayerclaudia@gmail.com",
-        "odescoeudres@gmail.com"];
+        "odescoeudres@gmail.com",
+        "collectoron7@gmail.com"];
 
       if (!whitelist.includes(user.email)) {
         throw new Error( "Unauthorized email '{{user.email}}'. " +

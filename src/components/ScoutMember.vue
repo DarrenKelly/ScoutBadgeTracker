@@ -11,6 +11,19 @@
         : state == 'Attended'
         ? 'attended'
         : '',
+      member.patrol == 'RED'
+        ? 'red-patrol'
+        : member.patrol == 'ORANGE'
+        ? 'orange-patrol'
+        : member.patrol == 'PURPLE'
+        ? 'purple-patrol'
+        : member.patrol == 'YELLOW'
+        ? 'yellow-patrol'
+        : member.patrol == 'BLUE'
+        ? 'blue-patrol'
+        : member.patrol == 'GREEN'
+        ? 'green-patrol'
+        : '',
     ]"
   >
     <div class="title">
@@ -28,7 +41,11 @@
       />
     </div>
 
-    <div>{{ member.type }} {{ member.section }}</div>
+    <div>
+      {{ member.type }} {{ member.section }} {{ member.patrol ? "," : "" }}
+      {{ member.patrol }}
+      {{ member.patrol ? "patrol" : "" }}
+    </div>
   </div>
   <div v-if="enableEdit && showEditForm">
     <MemberForm
@@ -106,7 +123,7 @@ export default {
   background: #f4f4f4;
   display: grid;
   grid-template-columns: auto 60px;
-  height: 60px;
+  height: 2cm;
   margin: 5px;
   padding: 10px 5px;
 }
@@ -142,5 +159,23 @@ export default {
 .midblock {
   margin-left: auto;
   margin-right: 10px;
+}
+.red-patrol {
+  border-right: 5pt solid #a60518;
+}
+.orange-patrol {
+  border-right: 5pt solid #f58206;
+}
+.purple-patrol {
+  border-right: 5pt solid #7005a6;
+}
+.yellow-patrol {
+  border-right: 5pt solid #ecd901;
+}
+.blue-patrol {
+  border-right: 5pt solid #0909db;
+}
+.green-patrol {
+  border-right: 5pt solid #14c704;
 }
 </style>
