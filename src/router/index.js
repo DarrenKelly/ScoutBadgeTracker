@@ -8,7 +8,7 @@ const routes = [
     path: "/",
     name: "HomeScreen",
     component: () =>
-      import(/* webpackChunkName: "heom" */ "../views/HomeView.vue"),
+      import(/* webpackChunkName: "home" */ "../views/HomeView.vue"),
   },
   {
     path: "/events",

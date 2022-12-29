@@ -123,6 +123,7 @@ export default {
   background: #f4f4f4;
   display: grid;
   grid-template-columns: auto 60px;
+  font-size: 20px;
   height: 2cm;
   margin: 5px;
   padding: 10px 5px;
@@ -136,18 +137,8 @@ export default {
 .attended {
   background: #a4d4a4;
 }
-
-.member.archived {
+.archived {
   border-left: 5px solid red;
-}
-.title {
-  align-items: left;
-}
-.type {
-  font-size: 12px;
-}
-.date {
-  font-size: 12px;
 }
 .icon {
   width: 45px;
@@ -156,24 +147,20 @@ export default {
 .gone {
   display: none;
 }
-.midblock {
-  margin-left: auto;
-  margin-right: 10px;
-}
 .red-patrol {
-  border-right: 5pt solid #a60518;
+  border-right: 5pt solid #f0041f;
 }
 .orange-patrol {
   border-right: 5pt solid #f58206;
 }
 .purple-patrol {
-  border-right: 5pt solid #7005a6;
+  border-right: 5pt solid #b522ff;
 }
 .yellow-patrol {
   border-right: 5pt solid #ecd901;
 }
 .blue-patrol {
-  border-right: 5pt solid #0909db;
+  border-right: 5pt solid #3030ff;
 }
 .green-patrol {
   border-right: 5pt solid #14c704;

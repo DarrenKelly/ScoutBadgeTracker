@@ -48,21 +48,7 @@ export default {
       this.$emit("delete-member", memberId);
     },
     patrolNameSort(memberList) {
-      let x = [...memberList].sort(patrolName);
-      for (let i = 0; i < Math.min(x.length, 20); i++)
-        console.log(
-          i +
-            1 +
-            ": " +
-            x[i].patrol +
-            " " +
-            x[i].givenname +
-            " ------ " +
-            memberList[i].patrol +
-            " " +
-            memberList[i].givenname
-        );
-      return x;
+      return [...memberList].sort(patrolName);
     },
   },
   data() {

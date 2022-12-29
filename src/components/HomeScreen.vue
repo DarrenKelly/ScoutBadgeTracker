@@ -9,3 +9,11 @@ export default {
   name: "HomeScreen",
 };
 </script>
+<style>
+.container {
+  width: 90%;
+}
+.logo {
+  width: 95%;
+}
+</style>

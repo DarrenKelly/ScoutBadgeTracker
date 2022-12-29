@@ -67,14 +67,11 @@ export default {
 </script>
 
 <style scoped>
-.logo {
-  width: 95%;
-}
 .home {
   text-align: center;
 }
 .gimage {
-  height: 32px;
+  height: 50mm;
   vertical-align: middle;
   padding-bottom: 2px;
 }

@@ -174,7 +174,9 @@ async function initialiseConfig(user) {
 async function initialiseEvents() {
   const querySnapshot = await getDocs(
     collection(FireDB.getInstance(), FB_EVENT_KEY)
-  );
+  ).catch((err) => {
+    console.log("Error returned by server:" + err);
+  });
 
   querySnapshot.forEach((doc) => {
     let newEvent = {
