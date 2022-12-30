@@ -100,7 +100,7 @@ export default {
       writeMember(modifiedMember);
     },
     localDeleteMember(memberId) {
-      console.log("MemberView deleteMember()");
+      console.log("MemberView localDeleteMember()");
 
       const found = this.membersdata.find((el) => el.id == memberId);
       const index = this.membersdata.indexOf(found);

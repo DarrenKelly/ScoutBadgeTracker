@@ -3,8 +3,10 @@
     <ScoutMember
       :enableEdit="enableEdit"
       :member="member"
+      :initialState="getInitialState(member.id)"
       @update-member="updateMember"
       @delete-member="deleteMember"
+      @change-participation="changeParticipation"
       v-if="!hideOldMembers || !member.archived"
     />
   </div>
@@ -31,13 +33,14 @@ export default {
   name: "MemberList",
   props: {
     members: Array,
+    participants: Array,
     hideOldMembers: Boolean,
     enableEdit: Boolean,
   },
   components: {
     ScoutMember,
   },
-  emits: ["update-member", "delete-member"],
+  emits: ["update-member", "delete-member", "change-participation"],
   methods: {
     updateMember(modifiedMember) {
       console.log("MemberList updateMember with Id " + modifiedMember.id);
@@ -48,7 +51,24 @@ export default {
       this.$emit("delete-member", memberId);
     },
     patrolNameSort(memberList) {
+      console.log("MemberList patrolNameSort()");
       return [...memberList].sort(patrolName);
+    },
+    changeParticipation(memberId, state) {
+      this.$emit("change-participation", memberId, state);
+    },
+    getInitialState(memberId) {
+      console.log("MemberList getInitialState(" + memberId + ")");
+      if (this.participants == null) {
+        return "";
+      }
+      let participant = this.participants.find((a) => a.id == memberId);
+
+      if (participant == null) {
+        return "";
+      }
+      console.log("role=" + participant.role);
+      return participant.role;
     },
   },
   data() {
@@ -74,7 +94,6 @@ export default {
   },
   beforeUpdate() {
     console.log("MemberList beforeUpdate()");
-    console.log("members=" + this.members);
   },
   unpdate() {
     console.log("MemberList unpdate()");

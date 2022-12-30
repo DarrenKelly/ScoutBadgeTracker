@@ -71,7 +71,7 @@ export default {
   text-align: center;
 }
 .gimage {
-  height: 50mm;
+  height: 50px;
   vertical-align: middle;
   padding-bottom: 2px;
 }

@@ -1,6 +1,8 @@
 import {
   collection,
   doc,
+  query,
+  where,
   addDoc,
   setDoc,
   getDocs,
@@ -171,10 +173,23 @@ async function initialiseConfig(user) {
   return config;
 }
 
+// We don't ewant to load  events looking back to all time.
+// Use this constant to define how many months of old events
+// the app should load by default.
+const DEFAULT_LOOKBACK_MONTHS = 12;
+
 async function initialiseEvents() {
-  const querySnapshot = await getDocs(
-    collection(FireDB.getInstance(), FB_EVENT_KEY)
-  ).catch((err) => {
+  let lookbackDate = new Date();
+  lookbackDate.setMonth(lookbackDate.getMonth() - DEFAULT_LOOKBACK_MONTHS);
+
+  let lookbackStr = lookbackDate.toISOString().split("T")[0];
+
+  const q = query(
+    collection(FireDB.getInstance(), FB_EVENT_KEY),
+    where("date", ">=", lookbackStr)
+  );
+
+  let querySnapshot = await getDocs(q).catch((err) => {
     console.log("Error returned by server:" + err);
   });
 
@@ -189,6 +204,7 @@ async function initialiseEvents() {
       hikekms: doc.data().hikekms,
       theme: doc.data().theme,
       note: doc.data().note,
+      participants: doc.data().participants,
     };
     events.push(newEvent);
   });

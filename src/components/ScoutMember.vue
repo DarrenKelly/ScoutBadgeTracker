@@ -65,29 +65,26 @@ export default {
   data() {
     return {
       showEditForm: false,
-      state: "",
+      state: this.initialState,
     };
   },
   props: {
     member: Object,
     enableEdit: Boolean,
+    initialState: String,
   },
   components: {
     MemberForm,
   },
-  emits: ["update-member", "delete-member"],
+  emits: ["update-member", "delete-member", "change-participation"],
   methods: {
     onClick() {
-      console.log(
-        "Clicked on Member with Id " +
-          this.member.id +
-          (this.enableEdit
-            ? " form enabled"
-            : " Changing state from '" + this.state + "'")
-      );
+      console.log("Clicked on Member with Id " + this.member.id);
       if (this.enableEdit) {
+        console.log("form enabled");
         this.showEditForm = !this.showEditForm;
       } else {
+        console.log(" Changing state from '" + this.state + "'");
         switch (this.state) {
           case "":
             this.state = "Attended";
@@ -102,6 +99,7 @@ export default {
             this.state = "";
             break;
         }
+        this.$emit("change-participation", this.member.id, this.state);
       }
     },
     updateMember(modifiedMember) {
@@ -114,6 +112,9 @@ export default {
       this.$emit("delete-member", memberId);
       this.showEditForm = false;
     },
+  },
+  created() {
+    console.log("ScoutMember created() initialState=" + this.initialState);
   },
 };
 </script>

@@ -76,6 +76,7 @@ export default {
       found.hikeKms = modifiedEvent.hikeKms;
       found.theme = modifiedEvent.theme;
       found.note = modifiedEvent.note;
+      found.participants = modifiedEvent.participants;
 
       writeEvent(modifiedEvent);
     },
