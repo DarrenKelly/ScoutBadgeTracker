@@ -193,6 +193,7 @@ async function initialiseEvents() {
     console.log("Error returned by server:" + err);
   });
 
+  events.length = 0;
   querySnapshot.forEach((doc) => {
     let newEvent = {
       id: doc.id,
@@ -229,6 +230,7 @@ async function initialiseMembers() {
     collection(FireDB.getInstance(), FB_MEMBER_KEY)
   );
 
+  members.length = 0;
   querySnapshot.forEach((doc) => {
     let newMember = {
       id: doc.id,
