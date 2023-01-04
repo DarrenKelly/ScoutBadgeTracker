@@ -1,28 +1,28 @@
 <template>
-  <div class="events">
-    <EventsHeader
-      v-if="selectedEventId == ''"
-      @filter-old-events="filterOldEvents"
+  <div class="activities">
+    <ActivitiesHeader
+      v-if="selectedActivityId == ''"
+      @filter-old-activities="filterOldActivities"
       :showForm="false"
       :allowAdd="false"
-      :hideOldEvents="hideOldEvents"
+      :hideOldActivities="hideOldActivities"
     />
     <RollHeader
-      v-if="selectedEventId != ''"
+      v-if="selectedActivityId != ''"
       @save-rollcall="saveRollcall"
       @cancel-changes="cancelChanges"
     />
-    <EventList
-      @select-event="selectEvent"
-      @deselect-event="deselectEvent"
-      :events="eventsdata"
+    <ActivityList
+      @select-activity="selectActivity"
+      @deselect-activity="deselectActivity"
+      :activities="activitiesdata"
       :allowEdit="false"
-      :selectedId="selectedEventId"
-      :hideOldEvents="hideOldEvents"
+      :selectedId="selectedActivityId"
+      :hideOldActivities="hideOldActivities"
     />
     <MemberList
       @change-participation="changeParticipation"
-      v-if="selectedEventId != ''"
+      v-if="selectedActivityId != ''"
       :members="membersdata"
       :participants="participants"
       :enableEdit="false"
@@ -33,47 +33,47 @@
 
 <script>
 import MemberList from "@/components/MemberList";
-import EventList from "@/components/EventList";
-import EventsHeader from "@/components/EventsHeader";
+import ActivityList from "@/components/ActivityList";
+import ActivitiesHeader from "@/components/ActivitiesHeader";
 import RollHeader from "@/components/RollHeader";
-import { members, events, writeEvent } from "@/firebase";
+import { members, activities, writeActivity } from "@/firebase";
 
 export default {
   name: "RollView",
   components: {
-    EventsHeader,
+    ActivitiesHeader,
     RollHeader,
     MemberList,
-    EventList,
+    ActivityList,
   },
   data() {
     return {
-      selectedEventId: "",
-      eventsdata: events,
+      selectedActivityId: "",
+      activitiesdata: activities,
       participants: [],
       membersdata: members,
-      hideOldEvents: true,
+      hideOldActivities: true,
     };
   },
   methods: {
-    selectEvent(eventId) {
-      console.log("RollView selectEvent() " + eventId);
-      this.selectedEventId = eventId;
-      let event = events.find((a) => a.id == eventId);
+    selectActivity(activityId) {
+      console.log("RollView selectActivity() " + activityId);
+      this.selectedActivityId = activityId;
+      let activity = activities.find((a) => a.id == activityId);
 
-      if ("participants" in event) {
-        this.participants = event.participants;
+      if ("participants" in activity && activity.participants != null) {
+        this.participants = activity.participants;
       } else {
         this.participants = [];
       }
     },
-    deselectEvent() {
-      console.log("RollView deselectEvent()");
-      this.selectedEventId = "";
+    deselectActivity() {
+      console.log("RollView deselectActivity()");
+      this.selectedActivityId = "";
     },
-    filterOldEvents() {
-      console.log("RollView filterOldEvents() ");
-      this.hideOldEvents = !this.hideOldEvents;
+    filterOldActivities() {
+      console.log("RollView filterOldActivities() ");
+      this.hideOldActivities = !this.hideOldActivities;
     },
     saveRollcall() {
       console.log("RollView saveRollcall() ");
@@ -84,26 +84,30 @@ export default {
           savedParticipants.push(participant);
         }
       });
-      let event = events.find((a) => a.id == this.selectedEventId);
-      event.participants = savedParticipants;
-      writeEvent(event);
+      let activity = activities.find((a) => a.id == this.selectedActivityId);
+      activity.participants = savedParticipants;
+      writeActivity(activity);
 
-      this.selectedEventId = "";
+      this.selectedActivityId = "";
     },
     cancelChanges() {
       console.log("RollView cancelChanges() ");
-      this.selectedEventId = "";
+      this.selectedActivityId = "";
     },
     changeParticipation(memberId, state) {
       console.log(
         "RollView changeParticipation( " + memberId + ", " + state + " )"
       );
+      console.log("this.participants = " + this.participants);
       let participant = this.participants.find((a) => a.id == memberId);
+      console.log("RollView changeParticipation participant = " + participant);
       if (participant == null) {
         participant = { id: memberId, role: state };
+        console.log("New participant = " + participant);
         this.participants.push(participant);
       } else {
         participant.role = state;
+        console.log("New participant role " + participant);
       }
     },
   },
