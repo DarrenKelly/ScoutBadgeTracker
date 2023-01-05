@@ -1,10 +1,10 @@
 <template>
   <header>
-    <h1>Events</h1>
+    <h1>Activities</h1>
     <StyledButton
       v-if="allowAdd"
       @clicked="onFormButtonClicked"
-      :button_text="showForm ? 'Cancel' : 'Add Event'"
+      :button_text="showForm ? 'Cancel' : 'Add Activity'"
       :colour="showForm ? 'red' : 'green'"
     />
     <StyledButton
