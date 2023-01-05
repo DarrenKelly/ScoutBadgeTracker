@@ -341,4 +341,8 @@ export default {
 .form-section {
   height: 120px;
 }
+
+ul li::marker {
+  content: "";
+}
 </style>
