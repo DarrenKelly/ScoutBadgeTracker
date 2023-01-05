@@ -6,106 +6,157 @@
     />
   </button>
   <form @submit.prevent="onSubmit" class="member-form">
-    <div class="form-control">
-      <label>Member Type</label>
-      <select name="membertype" v-model="membertype">
-        <option value="Youth">Youth</option>
-        <option value="Adult">Adult</option>
-      </select>
+    <div class="form-section">
+      <ul class="li-wrap">
+        <li>
+          <div class="form-control">
+            <select name="membertype" v-model="membertype">
+              <option value="Youth">Youth</option>
+              <option value="Adult">Adult</option>
+            </select>
+            <label>Member Type</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-control">
+            <select name="gender" v-model="gender">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="-">Other</option>
+            </select>
+            <label>Gender</label>
+          </div>
+        </li>
+        <li>
+          <div>
+            <label>Section</label>
+            <select name="section" v-model="section">
+              <option value="Joey">Joey</option>
+              <option value="Cubs">Cubs</option>
+              <option value="Scouts">Scouts</option>
+              <option value="Venturers">Venturers</option>
+              <option value="Rovers">Rovers</option>
+            </select>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="form-control">
-      <label>Gender</label>
-      <select name="gender" v-model="gender">
-        <option value="M">Male</option>
-        <option value="F">Female</option>
-        <option value="-">Other</option>
-      </select>
+    <div class="form-section">
+      <ul class="li-wrap">
+        <li>
+          <div>
+            <label class="switch" for="checkbox">
+              <input
+                type="checkbox"
+                v-model="archived"
+                name="archived"
+                id="archived"
+              />
+              <div class="slider round"></div>
+            </label>
+            <span class="slider-label">Archived</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <label class="switch" for="checkbox">
+              <input
+                type="checkbox"
+                v-model="trial"
+                name="trial"
+                id="trial"
+                placeholder="false"
+              />
+              <div class="slider round"></div>
+            </label>
+            <span class="slider-label">Trial</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <label class="switch" for="checkbox">
+              <input
+                type="checkbox"
+                v-model="waitlist"
+                name="waitlist"
+                id="waitlist"
+              />
+              <div class="slider round"></div>
+            </label>
+            <span class="slider-label">Waitlist</span>
+          </div>
+        </li>
+      </ul>
     </div>
-
-    <div>
-      <label>Section</label>
-      <select name="section" v-model="section">
-        <option value="Joey">Joey</option>
-        <option value="Cubs">Cubs</option>
-        <option value="Scouts">Scouts</option>
-        <option value="Venturers">Venturers</option>
-        <option value="Rovers">Rovers</option>
-      </select>
-    </div>
-
-    <div class="form-control">
-      <label>Archived</label>
-      <input
-        type="checkbox"
-        v-model="archived"
-        name="archived"
-        placeholder="false"
-      />
-    </div>
-
-    <div class="form-control">
-      <label>Trial</label>
-      <input type="checkbox" v-model="trial" name="trial" placeholder="false" />
-    </div>
-
-    <div class="form-control">
-      <label>Waitlist</label>
-      <input
-        type="checkbox"
-        v-model="waitlist"
-        name="waitlist"
-        placeholder="false"
-      />
-    </div>
-
-    <div class="form-control">
-      <label>Given Name</label>
-      <input
-        type="text"
-        v-model="givenname"
-        name="givenname"
-        placeholder="Given Name"
-      />
-    </div>
-    <div class="form-control">
-      <label>Family Name</label>
-      <input
-        type="text"
-        v-model="familyname"
-        name="familyname"
-        placeholder="Family Name"
-      />
-    </div>
-    <div class="form-control">
-      <label>Date of Birth</label>
-      <input type="date" v-model="dob" name="dob" placeholder="YYYY-MM-DD" />
-    </div>
-    <div class="form-control">
-      <label>Join Date</label>
-      <input
-        type="date"
-        v-model="joindate"
-        name="joindate"
-        placeholder="YYYY-MM-DD"
-      />
-    </div>
-    <div class="form-control">
-      <label>Contact Phone</label>
-      <input
-        type="text"
-        v-model="contactphone"
-        name="contactphone"
-        placeholder="Contact Phone"
-      />
-    </div>
-    <div class="form-control">
-      <label>Contact Email</label>
-      <input
-        type="text"
-        v-model="contactemail"
-        name="contactemail"
-        placeholder="Contact Email"
-      />
+    <div class="form-section">
+      <ul class="li-wrap">
+        <li>
+          <div class="form-control">
+            <input
+              type="text"
+              v-model="givenname"
+              name="givenname"
+              placeholder="Given Name"
+            />
+            <label>Given Name</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-control">
+            <input
+              type="text"
+              v-model="familyname"
+              name="familyname"
+              placeholder="Family Name"
+            />
+            <label>Family Name</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-control">
+            <input
+              type="date"
+              v-model="dob"
+              name="dob"
+              placeholder="YYYY-MM-DD"
+            />
+            <label>Date of Birth</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-control">
+            <input
+              type="date"
+              v-model="joindate"
+              name="joindate"
+              placeholder="YYYY-MM-DD"
+            />
+            <label>Join Date</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-control">
+            <input
+              type="text"
+              v-model="contactphone"
+              name="contactphone"
+              placeholder="Contact Phone"
+            />
+            <label>Contact Phone</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-control">
+            <input
+              type="text"
+              v-model="contactemail"
+              name="contactemail"
+              placeholder="Contact Email"
+            />
+            <label>Contact Email</label>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <input type="submit" value="Save Member" class="btn btn-block" />
@@ -265,5 +316,29 @@ export default {
   height: 48px;
   width: 48px;
   float: right;
+}
+.li-wrap ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
+}
+
+.li-wrap li {
+  float: left;
+  margin: 20px 20px;
+}
+
+.li-wrap li a {
+  margin: 4px;
+  color: #eee;
+  padding: 10px 20px;
+  background: #3c66ad;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.form-section {
+  height: 120px;
 }
 </style>
