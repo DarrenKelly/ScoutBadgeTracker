@@ -79,7 +79,7 @@ export default {
   },
   beforeUpdate() {
     console.log("activityList beforeUpdate()");
-    console.log("activities=" + this.activitys);
+    console.log("activities=" + this.activities);
   },
   unpdate() {
     console.log("activityList unpdate()");
