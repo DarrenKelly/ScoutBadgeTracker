@@ -23,7 +23,7 @@ export default {
     StyledButton,
   },
   props: {
-    hideOldEvents: Boolean,
+    hideOldActivities: Boolean,
     showForm: Boolean,
     allowAdd: Boolean,
   },
