@@ -2,6 +2,11 @@
   <header>
     <h1>Members</h1>
     <StyledButton
+      @clicked="$emit('toggle-sort-mode')"
+      :button_text="'Sort Order'"
+      :colour="'teal'"
+    />
+    <StyledButton
       @clicked="onFormButtonClicked"
       :button_text="showForm ? 'Cancel' : 'Add Member'"
       :colour="showForm ? 'red' : 'green'"
@@ -25,7 +30,7 @@ export default {
     hideOldMembers: Boolean,
     showForm: Boolean,
   },
-  emits: ["show-add-member-form", "filter-old-members"],
+  emits: ["show-add-member-form", "filter-old-members", "toggle-sort-mode"],
   methods: {
     onFormButtonClicked() {
       console.log("showForm=" + this.showForm);

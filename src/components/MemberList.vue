@@ -1,5 +1,5 @@
 <template>
-  <div v-for="member in patrolNameSort(members)" :key="member.id">
+  <div v-for="member in sortedMembers" :key="member.id">
     <ScoutMember
       :enableEdit="enableEdit"
       :member="member"
@@ -36,6 +36,34 @@ export default {
     participants: Array,
     hideOldMembers: Boolean,
     enableEdit: Boolean,
+    sortByPatrol: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    sortedMembers() {
+      if (this.sortByPatrol) {
+        // Sort by patrol, then familyname (with fallback)
+        return [...this.members].sort((a, b) => {
+          const patrolA = a.patrol || "";
+          const patrolB = b.patrol || "";
+          if (patrolA === patrolB) {
+            const famA = a.familyname || "";
+            const famB = b.familyname || "";
+            return famA.localeCompare(famB);
+          }
+          return patrolA.localeCompare(patrolB);
+        });
+      } else {
+        // Sort by familyname only (with fallback)
+        return [...this.members].sort((a, b) => {
+          const famA = a.familyname || "";
+          const famB = b.familyname || "";
+          return famA.localeCompare(famB);
+        });
+      }
+    },
   },
   components: {
     ScoutMember,

@@ -3,6 +3,7 @@
     <MembersHeader
       @show-add-member-form="toggleAddMemberForm"
       @filter-old-members="filterOldMembers"
+      @toggle-sort-mode="toggleSortMode"
       :showForm="showForm"
       :hideOldMembers="hideOldMembers"
     />
@@ -19,6 +20,7 @@
       :members="membersdata"
       :enableEdit="true"
       :hideOldMembers="hideOldMembers"
+      :sortByPatrol="sortByPatrol"
     />
   </div>
 </template>
@@ -41,6 +43,7 @@ export default {
       membersdata: members,
       hideOldMembers: true,
       showForm: false,
+      sortByPatrol: true,
       prefill: {
         id: null,
         givenname: null,
@@ -116,6 +119,9 @@ export default {
       console.log("MemberView toggleAddMemberForm()");
       this.showForm = !this.showForm;
     },
+    toggleSortMode() {
+      this.sortByPatrol = !this.sortByPatrol;
+    },
   },
   props: {},
   beforeCreate() {
@@ -141,6 +147,9 @@ export default {
   },
   unpdate() {
     console.log("MemberView unpdate()");
+  },
+  toggleSortMode() {
+    this.sortByPatrol = !this.sortByPatrol;
   },
 };
 </script>
