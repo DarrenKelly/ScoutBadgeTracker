@@ -90,7 +90,7 @@ async function writeMember(member) {
     try {
       const newMemberRef = await addDoc(
         collection(FireDB.getInstance(), FB_MEMBER_KEY),
-        member
+        member,
       );
       member.id = newMemberRef.id;
       console.log("Member saved. New Id=" + member.id);
@@ -101,7 +101,7 @@ async function writeMember(member) {
     try {
       await setDoc(
         doc(FireDB.getInstance(), FB_MEMBER_KEY, member.id),
-        removeUndefined(member)
+        removeUndefined(member),
       );
       console.log("Member updated");
     } catch (error) {
@@ -117,7 +117,7 @@ async function writeActivity(activity) {
     try {
       const newActivityRef = await addDoc(
         collection(FireDB.getInstance(), FB_ACTIVITY_KEY),
-        activity
+        activity,
       );
       console.log("Activity saved newActivityRef=" + newActivityRef.id);
       activity.id = newActivityRef.id;
@@ -128,7 +128,7 @@ async function writeActivity(activity) {
     try {
       await setDoc(
         doc(FireDB.getInstance(), FB_ACTIVITY_KEY, activity.id),
-        removeUndefined(activity)
+        removeUndefined(activity),
       );
       console.log("Activity updated");
     } catch (error) {
@@ -156,7 +156,7 @@ async function deleteActivity(activityId) {
 
 async function initialiseConfig(user) {
   const querySnapshot = await getDocs(
-    collection(FireDB.getInstance(), FB_CONFIG_KEY)
+    collection(FireDB.getInstance(), FB_CONFIG_KEY),
   );
 
   querySnapshot.forEach((doc) => {
@@ -186,7 +186,7 @@ async function initialiseActivities() {
 
   const q = query(
     collection(FireDB.getInstance(), FB_ACTIVITY_KEY),
-    where("date", ">=", lookbackStr)
+    where("date", ">=", lookbackStr),
   );
 
   let querySnapshot = await getDocs(q).catch((err) => {
@@ -227,7 +227,7 @@ function getISODate(inDate) {
 
 async function initialiseMembers() {
   const querySnapshot = await getDocs(
-    collection(FireDB.getInstance(), FB_MEMBER_KEY)
+    collection(FireDB.getInstance(), FB_MEMBER_KEY),
   );
 
   members.length = 0;

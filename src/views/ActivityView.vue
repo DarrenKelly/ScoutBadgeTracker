@@ -67,7 +67,7 @@ export default {
       console.log("activityView modifyActivity()");
 
       const found = this.activitiesData.find(
-        (el) => el.id == modifiedActivity.id
+        (el) => el.id == modifiedActivity.id,
       );
 
       found.type = modifiedActivity.type;

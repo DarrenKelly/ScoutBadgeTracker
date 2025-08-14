@@ -111,7 +111,7 @@ export default {
         "Clicked on Activity with Id " +
           this.activity.id +
           " selected=" +
-          this.selected
+          this.selected,
       );
       if (this.allowEdit) {
         this.showEditForm = !this.showEditForm;
@@ -123,7 +123,7 @@ export default {
     },
     updateActivity(modifiedActivity) {
       console.log(
-        "ScoutActivity updateActivity with Id " + modifiedActivity.id
+        "ScoutActivity updateActivity with Id " + modifiedActivity.id,
       );
       this.$emit("update-activity", modifiedActivity);
       this.showEditForm = false;

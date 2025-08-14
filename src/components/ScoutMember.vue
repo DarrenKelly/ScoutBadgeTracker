@@ -7,23 +7,23 @@
       state == 'Helping'
         ? 'helper'
         : state == 'Leader'
-        ? 'leader'
-        : state == 'Attended'
-        ? 'attended'
-        : '',
+          ? 'leader'
+          : state == 'Attended'
+            ? 'attended'
+            : '',
       member.patrol == 'RED'
         ? 'red-patrol'
         : member.patrol == 'ORANGE'
-        ? 'orange-patrol'
-        : member.patrol == 'PURPLE'
-        ? 'purple-patrol'
-        : member.patrol == 'YELLOW'
-        ? 'yellow-patrol'
-        : member.patrol == 'BLUE'
-        ? 'blue-patrol'
-        : member.patrol == 'GREEN'
-        ? 'green-patrol'
-        : '',
+          ? 'orange-patrol'
+          : member.patrol == 'PURPLE'
+            ? 'purple-patrol'
+            : member.patrol == 'YELLOW'
+              ? 'yellow-patrol'
+              : member.patrol == 'BLUE'
+                ? 'blue-patrol'
+                : member.patrol == 'GREEN'
+                  ? 'green-patrol'
+                  : '',
     ]"
   >
     <div class="title">

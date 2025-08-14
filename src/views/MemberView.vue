@@ -75,7 +75,7 @@ export default {
       if (!found) {
         console.error(
           "MemberView modifyMember() could not find member with id " +
-            modifiedMember.id
+            modifiedMember.id,
         );
         return;
       }

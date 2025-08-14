@@ -96,7 +96,7 @@ export default {
     },
     changeParticipation(memberId, state) {
       console.log(
-        "RollView changeParticipation( " + memberId + ", " + state + " )"
+        "RollView changeParticipation( " + memberId + ", " + state + " )",
       );
       console.log("this.participants = " + this.participants);
       let participant = this.participants.find((a) => a.id == memberId);
